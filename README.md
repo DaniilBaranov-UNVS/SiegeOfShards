@@ -1,7 +1,7 @@
 # Siege of Shards
 
-**MR-стратегия в духе Clash Royale, где арена разворачивается прямо в вашей комнате.**
-Вы стоите над полем боя в смешанной реальности, берёте карту рукой и бросаете отряд на поле. Против вас играет ИИ, который читает ситуацию на поле, а не спавнит юнитов случайно.
+**An MR strategy game in the spirit of Clash Royale, where the arena unfolds right in your room.**
+You stand above the battlefield in mixed reality, pick up a card with your hand and throw a squad onto the field. You play against an AI that reads the situation on the field instead of spawning units at random.
 
 <p align="left">
   <img alt="Unity" src="https://img.shields.io/badge/Unity-6000.0.58f1-000?logo=unity">
@@ -16,94 +16,94 @@
 
 ---
 
-## Скриншоты
+## Screenshots
 
 <p align="center">
-  <img src="Presentation/preview/PreviewGameplay2.png" alt="Арена на полу реальной комнаты" width="900">
+  <img src="Presentation/preview/PreviewGameplay2.png" alt="Arena on the floor of a real room" width="900">
 </p>
 
-<p align="center"><i>Арена стоит там, где вы её поставили. Комната остаётся видимой вокруг поля боя.</i></p>
+<p align="center"><i>The arena stays where you placed it. The room remains visible around the battlefield.</i></p>
 
-| Бой вблизи | Главное меню |
+| Close-up battle | Main menu |
 |---|---|
-| <img src="Presentation/preview/PreviewGameplay.png" alt="Карты в руке и круг призыва" width="440"> | <img src="Presentation/preview/PreviewMenu.png" alt="Меню, колода и сундук" width="440"> |
-| Рука из четырёх карт, полоса эликсира и круг призыва под лучом контроллера. | Колода, золото и сундуки на изогнутой панели в пространстве. |
+| <img src="Presentation/preview/PreviewGameplay.png" alt="Cards in hand and the summon circle" width="440"> | <img src="Presentation/preview/PreviewMenu.png" alt="Menu, deck and chest" width="440"> |
+| A hand of four cards, the elixir bar and the summon circle under the controller ray. | Deck, gold and chests on a curved panel in space. |
 
 ---
 
-## Суть матча
+## Match Rules
 
-- Арена ставится на реальную поверхность в вашей комнате. Таймер и ИИ стартуют только после подтверждения места.
-- **3 минуты**, **3 башни** на каждую сторону.
-- Эликсир: старт 5, максимум 10, +1 каждые 2 секунды. Тот же лимит действует и для ИИ.
-- Победа — снести все три башни соперника или сохранить больше своих к концу таймера.
-- Награда за матч: победа `40 золота + сундук`, ничья `20`, поражение `10`.
+- The arena is placed on a real surface in your room. The timer and the AI start only after you confirm the spot.
+- **3 minutes**, **3 towers** per side.
+- Elixir: starts at 5, max 10, +1 every 2 seconds. The AI has the same limit.
+- Victory: destroy all three enemy towers or keep more of your own when the timer runs out.
+- Match rewards: win `40 gold + chest`, draw `20`, loss `10`.
 
-## Смешанная реальность
+## Mixed Reality
 
-- **Сканирование комнаты** через Meta Scene Capture и MR Utility Kit, с поиском подходящей горизонтальной поверхности.
-- **Размещение арены** контроллером: полупрозрачный preview, перетаскивание, подтверждение. Событие `OnArenaConfirmed` служит стартовым сигналом для всей боевой логики.
-- **NavMesh печётся в рантайме** после установки арены, поэтому навигация юнитов работает в любой комнате и на любом масштабе стола.
-- **Карты — физические объекты.** Grip забирает карту из руки, луч контроллера подсвечивает точку призыва кругом, отпускание ставит отряд. Заклинания кладутся на всё поле, юниты — только в свою зону.
+- **Room scanning** via Meta Scene Capture and MR Utility Kit, with a search for a suitable horizontal surface.
+- **Arena placement** with the controller: semi-transparent preview, dragging, confirmation. The `OnArenaConfirmed` event is the start signal for all battle logic.
+- **NavMesh is baked at runtime** after the arena is placed, so unit navigation works in any room and at any table scale.
+- **Cards are physical objects.** Grip takes a card from the hand, the controller ray highlights the summon point with a circle, and releasing places the squad. Spells can be cast anywhere on the field, units only in your own zone.
 
-## Колода
+## Deck
 
-Колода игрока — 8 карт, в руке 4, использованная карта уходит в конец очереди.
+The player's deck has 8 cards, 4 of them in hand; a used card goes to the end of the queue.
 
-| Карта | Тип | Эликсир | Особенность |
+| Card | Type | Elixir | Feature |
 |---|---|---|---|
-| Skeletons | юниты | 1 | дешёвый размен, отвлечение |
-| Heal | заклинание | 3 | лечение зоны |
-| Cowboy | юнит | 4 | бьёт по воздуху |
-| Fire Dragon | юнит | 4 | наземный, бьёт по воздуху |
-| Meteor | заклинание | 4 | урон по площади |
-| Explosion | заклинание | 4 | отложенный взрыв |
-| Freezy | заклинание | 4 | заморозка зоны |
-| Centaur | юнит | 5 | ударный наземный |
-| Cold Dragon | юнит | 5 | летающий, бьёт по воздуху |
-| Lazer | заклинание | 5 | направленный урон по площади |
-| Golem | юнит | 7 | танк, давление на башни |
+| Skeletons | units | 1 | cheap trade, distraction |
+| Heal | spell | 3 | area healing |
+| Cowboy | unit | 4 | hits air targets |
+| Fire Dragon | unit | 4 | ground unit, hits air targets |
+| Meteor | spell | 4 | area damage |
+| Explosion | spell | 4 | delayed explosion |
+| Freezy | spell | 4 | area freeze |
+| Centaur | unit | 5 | ground striker |
+| Cold Dragon | unit | 5 | flying, hits air targets |
+| Lazer | spell | 5 | directional area damage |
+| Golem | unit | 7 | tank, pressure on towers |
 
-## ИИ-соперник
+## AI Opponent
 
-ИИ живёт по тем же правилам, что и игрок: та же экономика эликсира, та же циклическая колода 4 + 4.
+The AI follows the same rules as the player: the same elixir economy and the same 4 + 4 card cycle.
 
-- **BattlefieldAnalyzer** каждый тик считает численность сторон, позиции, дистанции до башен и направление атаки игрока, сводя это к пяти уровням угрозы.
-- **SmartAIOpponent** выбирает одну из четырёх стратегий: `Defend`, `CounterAttack`, `Aggressive`, `EconomyBuild`.
-- **AICardSelector** ранжирует карты руки по приоритету и подбирает точку призыва. Летающая атака даёт крупный бонус картам с `canTargetAir`, скопления врагов — заклинаниям.
-- Резерв эликсира, задержка «раздумий» и порог пассивности игрока настраиваются в инспекторе.
+- **BattlefieldAnalyzer** counts each side's units, positions, distances to towers and the direction of the player's attack every tick, and reduces it to five threat levels.
+- **SmartAIOpponent** picks one of four strategies: `Defend`, `CounterAttack`, `Aggressive`, `EconomyBuild`.
+- **AICardSelector** ranks the cards in hand by priority and picks a summon point. A flying attack gives a big bonus to cards with `canTargetAir`, enemy clusters favor spells.
+- Elixir reserve, "thinking" delay and the player passivity threshold are set in the Inspector.
 
-## Юниты
+## Units
 
-Каждый тип юнита — своя конечная машина состояний (`Run → Attack → Death`) поверх общего `UnitStateManager` с NavMesh-агентом, аггро-радиусом и командной принадлежностью. Летающие юниты используют собственный `FlyingAgent`, который берёт путь у NavMesh, но держит высоту сам. Заморозка, лечение и зоны урона реализованы как эффекты поверх общего `Health`.
+Each unit type has its own finite state machine (`Run → Attack → Death`) on top of a shared `UnitStateManager` with a NavMesh agent, aggro radius and team. Flying units use their own `FlyingAgent`, which takes the path from the NavMesh but keeps its altitude itself. Freezing, healing and damage zones are implemented as effects on top of the shared `Health`.
 
-## Мета-прогресс
+## Meta Progression
 
-- Колода собирается в главном меню из полного набора карт.
-- Золото и попытки открытия сундуков сохраняются между сессиями.
-- Карты качаются за фрагменты: 10 фрагментов + золото поднимают уровень карты.
-- Сундуки выдают фрагменты и новые карты с анимацией открытия.
+- The deck is built in the main menu from the full card set.
+- Gold and chest opening attempts are saved between sessions.
+- Cards are upgraded with fragments: 10 fragments + gold raise the card level.
+- Chests give fragments and new cards with an opening animation.
 
-## Технологии
+## Tech Stack
 
 Unity 6 (URP) · OpenXR + Meta XR SDK 81 · XR Interaction Toolkit 3.2 · AR Foundation 6.3 · MR Utility Kit · Unity AI Navigation · Cinemachine · Input System
 
-## Структура проекта
+## Project Structure
 
 ```
 Assets/Scripts/
-├─ AI Opponent/      анализ поля, выбор стратегии и карт, debug-оверлей
-├─ Cards/            данные карт (ScriptableObject), эликсир, XR-перетаскивание
-├─ CinematicLoading/ полёт дракона поверх фоновой загрузки боевой сцены
-├─ LogicBattle/      таймер матча, условия победы, награды, пауза
-├─ MainMenu/         колода, золото, сундуки, прокачка карт
-├─ MR/ MR2.0/ MR3.0/ сканирование комнаты и размещение арены
-├─ NavMesh/          рантайм-запекание навигации
-├─ Tower/            здоровье и разрушение башен
-└─ Units/            FSM юнитов, здоровье, заклинания и зоны эффектов
+├─ AI Opponent/      battlefield analysis, strategy and card choice, debug overlay
+├─ Cards/            card data (ScriptableObject), elixir, XR dragging
+├─ CinematicLoading/ dragon flight over background loading of the battle scene
+├─ LogicBattle/      match timer, win conditions, rewards, pause
+├─ MainMenu/         deck, gold, chests, card upgrades
+├─ MR/ MR2.0/ MR3.0/ room scanning and arena placement
+├─ NavMesh/          runtime navigation baking
+├─ Tower/            tower health and destruction
+└─ Units/            unit FSM, health, spells and effect zones
 ```
 
-Сцены: `LoadingScreen` → `MainMenu` → `BattleMatch`. Сцена `CinematicLoading` с полётом дракона поверх фоновой загрузки боя готова, но пока отключена в Build Settings.
+Scenes: `LoadingScreen` → `MainMenu` → `BattleMatch`. The `CinematicLoading` scene with a dragon flight over background battle loading is ready but currently disabled in Build Settings.
 
 ---
 
